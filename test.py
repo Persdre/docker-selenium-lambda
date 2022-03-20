@@ -37,57 +37,57 @@ def handler(event=None, context=None):
     driver.find_element(By.XPATH, login_path).click()
     time.sleep(1)
     
-    # to get celebrities' list
-    celebrities_list = []
-    with open("NFTCelebrities.txt") as f:
-        for line in f:
-            celebrities_list.append(line.strip())
+    # # to get celebrities' list
+    # celebrities_list = []
+    # with open("NFTCelebrities.txt") as f:
+    #     for line in f:
+    #         celebrities_list.append(line.strip())
     
-    # to read celebrities' following list from twitter
-    textfile = open("following_complete_list.txt", "w")
+    # # to read celebrities' following list from twitter
+    # textfile = open("following_complete_list.txt", "w")
 
-    # initial a following list to store all following people
-    following_list = []
+    # # initial a following list to store all following people
+    # following_list = []
     
-    for person in celebrities_list:
-        url = "https://twitter.com/" + person + "/following"
-        print(url)
-        driver.get(url)
-        # counter for the person's following people
-        counter = 0
-        # read first page of following list
-        usernames = driver.find_elements_by_class_name(
-            "css-18t94o4.css-1dbjc4n.r-1ny4l3l.r-ymttw5.r-1f1sjgu.r-o7ynqc.r-6416eg")
+    # for person in celebrities_list:
+    #     url = "https://twitter.com/" + person + "/following"
+    #     print(url)
+    #     driver.get(url)
+    #     # counter for the person's following people
+    #     counter = 0
+    #     # read first page of following list
+    #     usernames = driver.find_elements_by_class_name(
+    #         "css-18t94o4.css-1dbjc4n.r-1ny4l3l.r-ymttw5.r-1f1sjgu.r-o7ynqc.r-6416eg")
 
-        for username in usernames:
-            username = username.find_element_by_class_name("css-4rbku5.css-18t94o4.css-1dbjc4n.r-1loqt21.r-1wbh5a2.r-dnmrzs.r-1ny4l3l").get_attribute("href")
-            if username not in following_list:
-                following_list.append(username)
-                counter += 1
+    #     for username in usernames:
+    #         username = username.find_element_by_class_name("css-4rbku5.css-18t94o4.css-1dbjc4n.r-1loqt21.r-1wbh5a2.r-dnmrzs.r-1ny4l3l").get_attribute("href")
+    #         if username not in following_list:
+    #             following_list.append(username)
+    #             counter += 1
         
-        last_height = driver.execute_script("return document.body.scrollHeight")
-        while True:
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            # Wait to load page
-            time.sleep(5)
-            # Calculate new scroll height and compare with last scroll height
-            new_height = driver.execute_script("return document.body.scrollHeight")
-            if new_height == last_height:
-                break
-            last_height = new_height
+    #     last_height = driver.execute_script("return document.body.scrollHeight")
+    #     while True:
+    #         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    #         # Wait to load page
+    #         time.sleep(5)
+    #         # Calculate new scroll height and compare with last scroll height
+    #         new_height = driver.execute_script("return document.body.scrollHeight")
+    #         if new_height == last_height:
+    #             break
+    #         last_height = new_height
 
-            #get usernames element
-            usernames = driver.find_elements_by_class_name(
-                    "css-18t94o4.css-1dbjc4n.r-1ny4l3l.r-ymttw5.r-1f1sjgu.r-o7ynqc.r-6416eg")
-            for username in usernames:
-                username = username.find_element_by_class_name("css-4rbku5.css-18t94o4.css-1dbjc4n.r-1loqt21.r-1wbh5a2.r-dnmrzs.r-1ny4l3l").get_attribute("href")
-                if username not in following_list:
-                    following_list.append(username)
-                    counter += 1
+    #         #get usernames element
+    #         usernames = driver.find_elements_by_class_name(
+    #                 "css-18t94o4.css-1dbjc4n.r-1ny4l3l.r-ymttw5.r-1f1sjgu.r-o7ynqc.r-6416eg")
+    #         for username in usernames:
+    #             username = username.find_element_by_class_name("css-4rbku5.css-18t94o4.css-1dbjc4n.r-1loqt21.r-1wbh5a2.r-dnmrzs.r-1ny4l3l").get_attribute("href")
+    #             if username not in following_list:
+    #                 following_list.append(username)
+    #                 counter += 1
 
-        for elem in following_list:
-            textfile.write(elem + "\n")
-        print(counter)
-    textfile.close()
+    #     for elem in following_list:
+    #         textfile.write(elem + "\n")
+    #     print(counter)
+    # textfile.close()
     
-    return len(following_list)
+    return 0
