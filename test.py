@@ -25,9 +25,9 @@ def handler(event=None, context=None):
     driver.get("https://www.twitter.com/i/flow/login")
     time.sleep(10)
     user_name_path = '//*[@id="react-root"]/div/div/div/main/div/div/div/div[2]/div[2]/div[1]/div/div/div[5]/label/div/div[2]/div/input'
-    next_button = '//*[@id="react-root"]/div/div/div/main/div/div/div/div[2]/div[2]/div[1]/div/div/div[6]/div'
+    next_button = '//*[@id="react-root"]/div/div/div/main/div/div/div/div[2]/div[2]/div[1]/div/div/div[6]'
     driver.find_element(By.XPATH, user_name_path).send_keys("persdre")
-    time.sleep(10)
+    time.sleep(0.5)
     driver.find_element(By.XPATH, next_button).click()
     
 #     # upload password
