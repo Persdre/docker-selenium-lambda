@@ -23,7 +23,7 @@ def handler(event=None, context=None):
                               options=options)
     # get to login page
     driver.get("https://www.twitter.com/i/flow/login")
-    time.sleep(10)
+    time.sleep(0.5)
     user_name_path = '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[5]/label/div/div[2]/div/input'
     next_button = '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[6]/div'
     driver.find_element(By.XPATH, user_name_path).send_keys("persdre")
